@@ -1,0 +1,11 @@
+﻿@model CryptoWebApp.Models.CryptoModel
+
+<h2>Wynik operacji</h2>
+
+<p><strong>Algorytm:</strong> @Model.Algorithm</p>
+<p><strong>Tekst:</strong> @Model.InputText</p>
+<p><strong>Klucz:</strong> @Model.Key</p>
+<p><strong>Operacja:</strong> @Model.Operation</p>
+<p><strong>Wynik:</strong> @Model.Result</p>
+
+<a href="@Url.Action("Index", "Home")">Wróć do strony głównej</a>

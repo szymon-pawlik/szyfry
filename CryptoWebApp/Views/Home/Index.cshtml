@@ -1,0 +1,167 @@
+﻿@model CryptoWebApp.Models.CryptoModel
+
+@{
+ViewData["Title"] = "Crypto Tool";
+}
+
+<h1>Wybierz Algorytm Szyfrowania</h1>
+
+<form asp-controller="Crypto" asp-action="Process" method="post">
+    <!-- Wybór algorytmu -->
+    <label for="algorithm">Algorytm:</label>
+    <select id="algorithm" name="Algorithm" required>
+        <option value="" disabled selected>Wybierz algorytm</option>
+        <option value="Caesar">Caesar</option>
+        <option value="Vigenere">Vigenere</option>
+        <option value="Playfair">Playfair</option>
+        <option value="Polibius">Polibius</option>
+    </select>
+    <br />
+
+    <!-- Pole tekstowe dla wiadomości -->
+    <label for="inputText">Tekst:</label>
+    <input type="text" id="inputText" name="InputText" required />
+    <br />
+
+    <!-- Pole dla klucza -->
+    <div id="KeyField">
+        <label for="Key">Key:</label>
+        <input type="text" id="Key" name="Key" value="@Model?.Key" />
+    </div>
+
+    <!-- Przycisk do generowania klucza -->
+    <button type="button" id="generateKey" style="display: none;">Generuj klucz</button>
+    <br />
+
+    <!-- Wybór operacji (Szyfrowanie lub Deszyfrowanie) -->
+    <!-- Wybór operacji (Szyfrowanie lub Deszyfrowanie) -->
+    <label for="operation">Operacja:</label>
+    <select id="operation" name="Operation" required>
+        <option value="Encrypt">Szyfrowanie</option>
+        <option value="Decrypt">Deszyfrowanie</option>
+    </select>
+    <br />
+
+    <!-- Przycisk do przetwarzania -->
+    <!-- Przycisk do przetwarzania -->
+    <button type="submit">Przetwarzaj</button>
+    
+    
+
+</form>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const algorithmSelect = document.querySelector("select[name='Algorithm']");
+        const operationSelect = document.querySelector("select[name='Operation']");
+        const keyField = document.querySelector("input[name='Key']");
+        const inputTextField = document.querySelector("input[name='InputText']");
+        const submitButton = document.querySelector("button[type='submit']");
+        const generateKeyButton = document.getElementById("generateKey");
+
+        // Funkcja walidująca formularz
+        const validateForm = () => {
+            const algorithmSelected = algorithmSelect.value !== "";
+            const inputTextValid = inputTextField.value.trim() !== "";
+            const keyValid = keyField.value.trim() !== ""
+            const operationSelected = operationSelect.value !== "";
+
+            console.log("Algorithm selected:", algorithmSelected);
+            console.log("Input text valid:", inputTextValid);
+            console.log("Key valid:", keyValid);
+            console.log("Operation selected:", operationSelected);
+
+            submitButton.disabled = !(algorithmSelected && inputTextValid && keyValid && operationSelected);
+
+            console.log("Submit button disabled:", submitButton.disabled);
+        };
+
+
+
+
+        // Ograniczenie wpisywania do liczb
+        const restrictToNumbers = (event) => {
+            if (/[^0-9]/.test(event.key)) {
+                event.preventDefault();
+            }
+        };
+
+        // Ograniczenie wpisywania do liter
+        const restrictToLetters = (event) => {
+            if (/[^a-zA-Z]/.test(event.key)) {
+                event.preventDefault();
+            }
+        };
+
+        // Obsługa zmiany algorytmu
+        algorithmSelect.addEventListener("change", function () {
+            const selectedAlgorithm = this.value;
+
+            // Ustawienie ograniczeń dla pola klucza
+            keyField.removeEventListener("keypress", restrictToNumbers);
+            keyField.removeEventListener("keypress", restrictToLetters);
+
+            if (selectedAlgorithm === "Caesar") {
+                keyField.setAttribute("type", "number");
+                keyField.setAttribute("pattern", "[0-9]*");
+                keyField.addEventListener("keypress", restrictToNumbers);
+                keyField.removeAttribute("readonly");
+                keyField.parentElement.style.display = "block"; // Pokaż pole
+            }else if (selectedAlgorithm === "Polibius") {
+                keyField.parentElement.style.display = "none"; // Ukryj pole
+                keyField.value = "a"; // Ustaw klucz na 1
+            }else {
+
+                keyField.setAttribute("type", "text");
+                keyField.setAttribute("pattern", "[A-Za-z]*");
+                keyField.addEventListener("keypress", restrictToLetters);
+                keyField.removeAttribute("readonly");
+                generateKeyButton.style.display = "none";
+                keyField.parentElement.style.display = "block"; // Pokaż pole
+            }
+
+            validateForm();
+        });
+
+
+        // Walidacja na bieżąco
+        inputTextField.addEventListener("input", validateForm);
+        keyField.addEventListener("input", validateForm);
+        operationSelect.addEventListener("change", validateForm);
+
+
+        // Inicjalizacja formularza
+        validateForm();
+        algorithmSelect.dispatchEvent(new Event("change"));
+    });
+
+</script>
+
+
+
+<style>
+    form {
+        max-width: 500px;
+        margin: auto;
+        font-family: Arial, sans-serif;
+    }
+
+    label, input, select, button {
+        display: block;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    button {
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+</style>
