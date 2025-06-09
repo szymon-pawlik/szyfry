@@ -1,46 +1,39 @@
-🔐 CryptoTool - Narzędzie do Szyfrów Klasycznych
-CryptoTool to prosta aplikacja webowa zbudowana w technologii ASP.NET Core MVC, która pozwala na szyfrowanie i deszyfrowanie wiadomości przy użyciu czterech fundamentalnych, historycznych algorytmów kryptograficznych.
 
-Projekt powstał w celach edukacyjnych, aby zaprezentować implementację i działanie klasycznych technik szyfrowania w nowoczesnym środowisku webowym.
+## 🔐 CryptoTool - Narzędzie do Szyfrów Klasycznych
 
-✨ Kluczowe Funkcje
+CryptoTool to prosta aplikacja webowa zbudowana w technologii ```ASP.NET Core MVC```, która pozwala na szyfrowanie i deszyfrowanie wiadomości przy użyciu czterech fundamentalnych, historycznych algorytmów kryptograficznych.
+
+
+## 🚀Demo
+
+![image](https://github.com/user-attachments/assets/27c832f6-678d-48f7-9c89-aca813053d30)
+
+## ✨ Kluczowe Funkcje
 Obsługa wielu algorytmów: Implementacja czterech popularnych szyfrów:
 
-Szyfr Cezara
+- Szyfr Cezara
 
-Szyfr Vigenère'a
+- Szyfr Vigenère'a
 
-Szyfr Playfair
+- Szyfr Playfair
 
-Siatka Polibiusza
+- Siatka Polibiusza
 
 Dwie operacje: Możliwość szyfrowania oraz deszyfrowania tekstu.
 
 Interaktywny interfejs: Formularz dynamicznie dostosowuje pole na klucz w zależności od wybranego algorytmu.
 
-Walidacja po stronie klienta: Prosty skrypt JavaScript zapewnia, że użytkownik wypełnił wszystkie wymagane pola.
+Walidacja po stronie klienta: Prosty skrypt ```JavaScript``` zapewnia, że użytkownik wypełnił wszystkie wymagane pola.
+## 🛠️ Technologie
 
-🛠️ Technologie
-Backend: C# / .NET (ASP.NET Core MVC)
+- Backend: ```C#``` / ```.NET (ASP.NET Core MVC)```
 
-Frontend: HTML, CSS, JavaScript
+- Frontend: ```HTML```, ```CSS```, ```JavaScript```
 
-Środowisko deweloperskie: Visual Studio / .NET CLI
+- Środowisko deweloperskie: ```Visual Studio``` / ```.NET CLI```
 
-🚀 Jak używać?
-Uruchom aplikację i otwórz ją w przeglądarce.
 
-Z listy rozwijanej wybierz algorytm, którego chcesz użyć.
-
-Wpisz tekst do przetworzenia.
-
-Wprowadź klucz (jeśli jest wymagany przez dany algorytm).
-
-Wybierz operację (Szyfrowanie / Deszyfrowanie).
-
-Kliknij przycisk "Przetwarzaj", aby zobaczyć wynik.
-
-⚙️ Instalacja i Uruchomienie
+## ⚙️ Instalacja i Uruchomienie (Run Locally)
 Aby uruchomić projekt lokalnie, wykonaj poniższe kroki:
 
 Sklonuj repozytorium:
